@@ -6,7 +6,9 @@ angular.module('pedigraphFrontendApp')
         '{"query" : "MATCH (a:Cat) WHERE a.id=~{id} return a", "params" : {"id" : ".*' + $scope.search + '.*"} }')
         .success(function(data) {
           $scope.cats = data.data;
-          console.log(data.data[0][0].data.id);
+          if(data.data.length > 0) {
+            console.log(data.data[0][0].data.id);
+          }
         })
         .error(function() {
           console.log('Failed!');
